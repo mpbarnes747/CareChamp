@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+      <button ion-button icon-only (click)="getMessages()">
+          <ion-icon name="refresh"></ion-icon>
+        </button>
+    <ion-title>
+        Messages from 
+    </ion-title>
+    
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+      
+    <ion-item *ngFor="let msg of messages">
+        
+        
+        <h2 > {{msg.Subject}}  </h2>
+               
+      <p>{{msg.Message}}</p>
+       
+           
+      <ion-note item-end>{{msg.timeSent}}</ion-note>
+    </ion-item>
+    
+  </ion-list>
+</ion-content>

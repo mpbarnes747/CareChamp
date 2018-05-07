@@ -1,8 +1,14 @@
 {
   "name": "CarePointWeb",
-  "app_id": "",
+  "app_id": "5a46b226",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
-  }
+  },
+  "proxies": [
+    {
+      "path": "/api/ToDoList",
+      "proxyUrl": "http://localhost:52616/api/ToDoList"
+    }
+  ]
 }
