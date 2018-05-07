@@ -27,9 +27,7 @@ export class MessagesPage {
   }
 
   viewItem(event, msg) {
-    this.navCtrl.push(MessageDetailsPage, {
-      msg: msg
-    });
+    this.navCtrl.push(MessageDetailsPage, msg);
   }
 
 }
