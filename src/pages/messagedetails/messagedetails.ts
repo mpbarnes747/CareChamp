@@ -48,6 +48,12 @@ editorMsg: any;
     this.loading.dismiss();
   }
 
+  doRefresh(refresher) {
+    this.getMessages();
+    refresher.complete();
+    
+  }
+
   sendMsg() {
     this.loading = this.loadingCtrl.create({
       content: 'Sending message...'
@@ -61,8 +67,10 @@ editorMsg: any;
       console.log(data);
       
     });
-    this.loading.dismiss().th;
+    this.editorMsg = "";
+    this.loading.dismiss();
          this.getMessages();
+
         
   }
 }

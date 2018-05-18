@@ -12,6 +12,8 @@ import { MessagesPage } from '../pages/messages/messages';
 import { MessageDetailsPage } from '../pages/messagedetails/messagedetails';
 import { StartVisitPage } from '../pages/start-visit/start-visit';
 import { VitalSignsPage } from '../pages/vital-signs/vital-signs';
+import { FunctionalPage } from '../pages/functional/functional';
+import { SafetyPage } from '../pages/safety/safety';
 import { LocatorPage } from '../pages/locator/locator';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -37,6 +39,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     MessageDetailsPage,
     StartVisitPage,
     VitalSignsPage,
+    FunctionalPage,
+    SafetyPage,
     LocatorPage,
     HomePage,
     TabsPage   
@@ -59,6 +63,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     MessageDetailsPage,
     StartVisitPage,
     VitalSignsPage,
+    FunctionalPage,
+    SafetyPage,
     LocatorPage,
     HomePage,
     TabsPage

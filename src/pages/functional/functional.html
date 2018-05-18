@@ -1,0 +1,65 @@
+<!--
+  Generated template for the FunctionalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar  color="primary">
+  
+       <ion-buttons start>
+            <button ion-button icon-only (click)="closeModal()">
+              <ion-icon name="close"></ion-icon>
+            </button>
+          </ion-buttons>
+      <ion-title>
+         Functional
+      </ion-title>
+      
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content padding>
+
+    <ion-item>
+        <ion-label floating>Functional Limitations</ion-label>
+        <ion-select [(ngModel)]="funcLim" multiple="true">
+          <ion-option>Amputation</ion-option>
+          <ion-option>Bowel/Bladder</ion-option>
+          <ion-option>Contracture</ion-option>
+          <ion-option>Hearing</ion-option>
+          <ion-option>Paralysis</ion-option>
+          <ion-option>Endurance</ion-option>
+          <ion-option>Ambulation</ion-option>
+          <ion-option>Speech</ion-option>
+          <ion-option>Legally Blind</ion-option>
+          <ion-option>Dyspnea w/ minimal exertion</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+          <ion-label floating>Activities Permitted</ion-label>
+          <ion-select [(ngModel)]="actPerm" multiple="true">
+            <ion-option>Complete bedrest</ion-option>
+            <ion-option>Bedrest/BRP</ion-option>
+            <ion-option>Up as tolerated</ion-option>
+            <ion-option>Transfer bed/chair</ion-option>
+            <ion-option>Exercises prescribed</ion-option>
+            <ion-option>Partial weight bearing</ion-option>
+            <ion-option>Independent in home</ion-option>
+            <ion-option>Crutches</ion-option>
+            <ion-option>Cane</ion-option>
+            <ion-option>Wheelchair</ion-option>
+            <ion-option>Walker</ion-option>
+            <ion-option>No restrictions</ion-option>
+          </ion-select>
+        </ion-item>
+</ion-content>
+
+<ion-footer>
+    <button ion-button large round block color="primary" (click)="saveFunctional()">
+      Save Functional
+    </button>
+  
+  </ion-footer>

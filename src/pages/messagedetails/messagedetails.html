@@ -1,19 +1,18 @@
 <ion-header>
   <ion-navbar  color="dark">
 
-     <ion-buttons end>
-          <button ion-button icon-only (click)="getMessages()">
-            <ion-icon name="refresh"></ion-icon>
-          </button>
-        </ion-buttons>
+    
     <ion-title>
-        Messages from {{message.OtherEmp}}
+        {{message.OtherEmp}}
     </ion-title>
     
   </ion-navbar>
 </ion-header>
 
 <ion-content >
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
   <div class="message-wrap">
 
     <div *ngFor="let msg of messages"

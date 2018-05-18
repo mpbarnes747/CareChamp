@@ -24,24 +24,39 @@
 <h2>{{ schedule.PatName }}</h2>
 <h3>{{ schedule.EmpName }}</h3>
 <ion-item>
-    <ion-label>Date</ion-label>
+    <ion-label floating>Date</ion-label>
     <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="schedule.StartDt"></ion-datetime>
   </ion-item>
 <ion-item>
-    <ion-label>Start</ion-label>
+    <ion-label floating>Start</ion-label>
     <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="schedule.StartTm"></ion-datetime>
   </ion-item>
   <ion-item>
-      <ion-label>End</ion-label>
+      <ion-label floating>End</ion-label>
       <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="schedule.EndTm"></ion-datetime>
     </ion-item>
     
-<button ion-button round full outline color="secondary" (click)="startVitals()">Vital Signs</button>
+    <ion-item>
+      <ion-label floating>Payer</ion-label>
+      <ion-select [(ngModel)]="schedule.ProPay" interface="popover">
+        <ion-option *ngFor="let pay of schedule.PayerList" value="{{pay.Code}}">{{pay.Name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+        <ion-label floating>Comments</ion-label>
+        <ion-textarea [(ngModel)]="schedule.Comments" ></ion-textarea>
+        
+      </ion-item>
+<button ion-button round large block outline color="secondary" (click)="startVitals()">Vital Signs</button>
+
+<button ion-button round large block outline color="secondary" (click)="startFunctional()">Functional</button>
+
+<button ion-button round large block outline color="secondary" (click)="startSafety()">Safety</button>
 </ion-content>
 
 <ion-footer  >
-    <button ion-button round block color="secondary" (click)="saveVisit()">
-        <ion-icon name="checkmark-circle"></ion-icon> Save Visit
+    <button ion-button large round block color="primary" (click)="saveVisit()">
+         Save Visit
       </button>
     
   </ion-footer>

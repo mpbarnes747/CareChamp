@@ -37,4 +37,9 @@ export class MessagesPage {
     });
   }
 
+  doRefresh(refresher) {
+    this.getMessages();
+    refresher.complete();
+    
+  }
 }

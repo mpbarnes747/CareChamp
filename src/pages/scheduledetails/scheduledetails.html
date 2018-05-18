@@ -8,8 +8,9 @@
     
   </ion-navbar>
   <ion-toolbar>
-      <button ion-button icon-start block round color="primary" (click)="startVisit()"  ><ion-icon name="add-circle"></ion-icon>  Start Visit</button>
-  </ion-toolbar>
+      <button *ngIf="schedule.Status=='1'" ion-button large block round color="primary" (click)="startVisit()"  >  Start Visit</button>
+      <button *ngIf="schedule.Status!='1'" ion-button large block round color="primary" (click)="startVisit()"  > Edit Visit</button>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content padding >
@@ -19,7 +20,7 @@
 <h5>{{ schedule.StartTime }}</h5>
 <h4 *ngIf="schedule.AssessStartDate!=''">Visit on {{ schedule.AssessStartDate }}</h4>
 <h5  *ngIf="schedule.AssessStartDate!=''">{{ schedule.AssessStartTime }}</h5>
-<button ion-button icon-start block round color="secondary" (click)="loadMap()"  ><ion-icon name="locate"></ion-icon>  Get Directions</button>
+<button ion-button icon-start block round color="secondary" (click)="loadMap()"  >  Get Directions</button>
     <ion-card>
         <ion-card-content>
             <div #directionsPanel></div>

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {  NavController, NavParams, ViewController, LoadingController, ModalController } from 'ionic-angular';
 import { VitalSignsPage } from '../vital-signs/vital-signs'
+import { FunctionalPage } from '../functional/functional'
+import { SafetyPage } from '../safety/safety'
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { DomElementSchemaRegistry } from '@angular/compiler';
 /**
@@ -62,7 +64,7 @@ asmt: any;
   }
   startVitals() {
     this.loading = this.loadingCtrl.create({
-      content: 'Starting vitals...'
+      content: 'Loading vitals...'
   });
     this.loading.present();
     var modalPage = this.modalCtrl.create(VitalSignsPage); 
@@ -71,4 +73,29 @@ asmt: any;
          
         
   }
+
+  startFunctional() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Loading functional...'
+  });
+    this.loading.present();
+    var modalPage = this.modalCtrl.create(FunctionalPage); 
+    modalPage.present();
+    this.loading.dismiss();
+         
+        
+  }
+
+  startSafety() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Loading safety...'
+  });
+    this.loading.present();
+    var modalPage = this.modalCtrl.create(SafetyPage); 
+    modalPage.present();
+    this.loading.dismiss();
+         
+        
+  }
+
 }

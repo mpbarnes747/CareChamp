@@ -2,29 +2,26 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 
 /**
- * Generated class for the VitalSignsPage page.
+ * Generated class for the FunctionalPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
 
 @Component({
-  selector: 'page-vital-signs',
-  templateUrl: 'vital-signs.html',
+  selector: 'page-functional',
+  templateUrl: 'functional.html',
 })
-export class VitalSignsPage {
+export class FunctionalPage {
 
-  sysBp: number = 80;
-  diaBp: number = 120;
-  temp: number = 98.6;
-  resp: number = 40;
-  pulse: number = 60;
-  
+  actPerm: Array<string>;
+  funcLim: Array<string>;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad VitalSignsPage');
+    console.log('ionViewDidLoad FunctionalPage');
   }
 
   closeModal() {
@@ -32,7 +29,8 @@ export class VitalSignsPage {
     this.viewCtrl.dismiss();
   }
 
-  saveVitals() {
+  saveFunctional() {
     this.viewCtrl.dismiss();
   }
+
 }

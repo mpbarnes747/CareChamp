@@ -92,7 +92,7 @@ this.logTracking();
  
   logTracking() {
     var now = new Date();
-    if(this.lastUpdateTime && now.getTime() - this.lastUpdateTime.getTime() < (60000*.5)){
+    if(this.lastUpdateTime && now.getTime() - this.lastUpdateTime.getTime() < (60000*5)){
         console.log("Ignoring position update");
         return;
     }
