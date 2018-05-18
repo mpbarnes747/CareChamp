@@ -18,6 +18,7 @@ export class LoginPage {
  userName: any;
  password: any;
   loading: any;
+  curUser: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService:AuthServiceProvider, public toastCtrl:ToastController, private loadingCtrl: LoadingController) {
   this.loading = this.loadingCtrl.create({
@@ -37,7 +38,10 @@ export class LoginPage {
       this.token = result;
       
       if(this.token){
+                  
                   localStorage.setItem('accTok', JSON.stringify(this.token));
+                  this.getUser();
+                  
                   this.loading.dismiss().then(() => {
                     
                     this.navCtrl.setRoot(TabsPage, {}, {animate: true, direction: 'forward'});
@@ -53,6 +57,17 @@ export class LoginPage {
     this. presentToast("Enter username and password.");
   }
 
+  }
+
+  getUser() {
+    this.authService.getData('AppUser/ME')
+    .then(data => {
+      this.curUser = data;
+      if (this.curUser) {
+       
+        localStorage.setItem('appTabs', JSON.stringify(this.curUser.AppAccess));
+      }
+    });
   }
 
   presentToast(msg) {

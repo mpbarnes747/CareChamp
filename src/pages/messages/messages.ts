@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { MessageDetailsPage } from '../messagedetails/messagedetails'
 
@@ -10,24 +10,31 @@ import { MessageDetailsPage } from '../messagedetails/messagedetails'
 export class MessagesPage {
   
   messages: any;
-  params: Object;
-  pushPage: any;
+  loading: any;
 
-  constructor(public navCtrl: NavController, public authServiceProvider: AuthServiceProvider) {
-
+  constructor(public navCtrl: NavController, public authServiceProvider: AuthServiceProvider, private loadingCtrl: LoadingController) {
+    
     this.getMessages();
   }
 
   getMessages() {
-    this.authServiceProvider.getData('ToDoList/')
+    this.loading = this.loadingCtrl.create({
+      content: 'Loading messages...'
+  });
+    this.loading.present();
+    this.authServiceProvider.getData('ToDoList/MINE')
     .then(data => {
       this.messages = data;
       
     });
+    this.loading.dismiss();
   }
 
-  viewItem(event, msg) {
-    this.navCtrl.push(MessageDetailsPage, msg);
+  viewItem(msg) {
+    console.log(msg);
+    this.navCtrl.push(MessageDetailsPage, {
+      msg: msg
+    });
   }
 
 }

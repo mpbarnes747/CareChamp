@@ -1,28 +1,53 @@
 <ion-header>
-  <ion-navbar>
-      <button ion-button icon-only (click)="getMessages()">
-          <ion-icon name="refresh"></ion-icon>
-        </button>
+  <ion-navbar  color="dark">
+
+     <ion-buttons end>
+          <button ion-button icon-only (click)="getMessages()">
+            <ion-icon name="refresh"></ion-icon>
+          </button>
+        </ion-buttons>
     <ion-title>
-        Messages from 
+        Messages from {{message.OtherEmp}}
     </ion-title>
     
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-      
-    <ion-item *ngFor="let msg of messages">
-        
-        
-        <h2 > {{msg.Subject}}  </h2>
-               
-      <p>{{msg.Message}}</p>
-       
-           
-      <ion-note item-end>{{msg.timeSent}}</ion-note>
-    </ion-item>
-    
-  </ion-list>
+<ion-content >
+  <div class="message-wrap">
+
+    <div *ngFor="let msg of messages"
+         class="message"
+         [class.left]=" msg.EmpTo === msg.CurEmp "
+         [class.right]=" msg.EmpFrom === msg.CurEmp ">
+      <img class="user-img" [src]="msg.EmpFromImg" alt="" src="">
+      <ion-spinner name="dots" *ngIf="msg.Status === '9'"></ion-spinner>
+      <div class="msg-detail">
+        <div class="msg-info">
+          <p>
+            {{msg.Subject}}&nbsp;&nbsp;&nbsp;{{msg.timeSent }}</p>
+        </div>
+        <div class="msg-content">
+          <span class="triangle"></span>
+          <p class="line-breaker ">{{msg.Message}}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </ion-content>
+
+<ion-footer no-border >
+    <div class="input-wrap">
+      
+      <textarea #chat_input
+                placeholder="Enter message"
+                [(ngModel)]="editorMsg"
+                (keyup.enter)="sendMsg()">
+      </textarea>
+      <button ion-button clear icon-only color="primary" item-right (click)="sendMsg()">
+        <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
+      </button>
+    </div>
+    
+  </ion-footer>

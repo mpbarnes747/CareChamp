@@ -1,5 +1,6 @@
-<ion-tabs>
-  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="Schedule" tabIcon="calendar"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Messages" tabIcon="chatbubbles"></ion-tab>
+<ion-tabs color="dark">
+  <ion-tab [show]="appTabs.includes('Home|')" [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
+  <ion-tab [show]="appTabs.includes('Schedule|')" [root]="tab2Root" tabTitle="Schedule" tabIcon="calendar"></ion-tab>
+  <ion-tab [show]="appTabs.includes('Messages|')" [root]="tab3Root" tabTitle="Messages" tabIcon="chatbubbles"></ion-tab>
+  <ion-tab [show]="appTabs.includes('Locator|')" [root]="tab4Root" tabTitle="Locator" tabIcon="locate"></ion-tab>
 </ion-tabs>

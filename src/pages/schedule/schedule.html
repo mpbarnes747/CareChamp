@@ -1,16 +1,32 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar  color="dark">
     <ion-title>
       Schedule
     </ion-title>
   </ion-navbar>
+  <ion-toolbar *ngIf="schedules!=0">
+      <button ion-button icon-start round block color="primary" (click)="openModal()"  ><ion-icon name="add-circle"></ion-icon>  Schedule Visit</button>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-list inset>
-    <ion-item *ngFor="let user of users">
-      <h2>{{user.name}}</h2>
-      <p>{{user.email}}</p>
-    </ion-item>
-  </ion-list>
+<ion-content >
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+    <h3 *ngIf="schedules==0">No schedules exist</h3>
+    <ion-list>
+        <ion-item-group *ngFor="let sdat of schedules" >
+            <ion-item-divider sticky  >{{sdat.StartDate}}</ion-item-divider>
+            <ion-item *ngFor="let event of sdat.SchedEvents" (click)="viewItem(event)" >
+                <ion-icon *ngIf="event.Status=='1'" name="ios-clock" item-start color="secondary"></ion-icon>
+                <ion-icon *ngIf="event.Status=='2'" name="ios-cog" item-start></ion-icon>
+                <ion-icon *ngIf="event.Status=='3'" name="ios-checkmark-circle" item-start></ion-icon>
+                <h2 > {{event.PatName}}  </h2>
+                   
+                <p>{{event.TimeHeader}}</p>
+                <ion-note item-end>{{event.Subject}}</ion-note>
+            </ion-item>
+        </ion-item-group>
+       
+          </ion-list>
 </ion-content>

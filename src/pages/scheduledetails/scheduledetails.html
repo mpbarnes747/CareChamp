@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar  color="dark">
+
+     
+    <ion-title>
+        Visit Details
+    </ion-title>
+    
+  </ion-navbar>
+  <ion-toolbar>
+      <button ion-button icon-start block round color="primary" (click)="startVisit()"  ><ion-icon name="add-circle"></ion-icon>  Start Visit</button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding >
+  
+    <h3>{{ schedule.PatName }}</h3>
+<h4>Scheduled for {{ schedule.StartDate }}</h4>
+<h5>{{ schedule.StartTime }}</h5>
+<h4 *ngIf="schedule.AssessStartDate!=''">Visit on {{ schedule.AssessStartDate }}</h4>
+<h5  *ngIf="schedule.AssessStartDate!=''">{{ schedule.AssessStartTime }}</h5>
+<button ion-button icon-start block round color="secondary" (click)="loadMap()"  ><ion-icon name="locate"></ion-icon>  Get Directions</button>
+    <ion-card>
+        <ion-card-content>
+            <div #directionsPanel></div>
+        </ion-card-content>
+    </ion-card>
+     
+    <div #map id="map"></div> 
+</ion-content>
+
+

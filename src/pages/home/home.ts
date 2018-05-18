@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, App } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { LoginPage } from '../login/login';
-
+import { LocationTrackerProvider } from '../../providers/location-tracker/location-tracker';
 
 @Component({
   selector: 'page-home',
@@ -15,10 +15,16 @@ email: any = ""
 userName: any = ""
 profilePicture: any = "https://www.gravatar.com/avatar/"
 
-  constructor(public navCtrl: NavController, public authService:AuthServiceProvider, public app: App) {
+  constructor(public navCtrl: NavController, public authService:AuthServiceProvider, public app: App, public locationTracker: LocationTrackerProvider) {
       
  this.getUser();
- 
+ this.locationTracker.startTracking();
+
+}
+
+ionViewWillUnload() {
+  
+
 }
 
 logout(){
@@ -35,8 +41,17 @@ getUser() {
       this.email = this.curUser.EmailMd5;
       this.userName = this.curUser.UserName;
       this.profilePicture = "https://www.gravatar.com/avatar/" + this.email;
+     
     }
   });
+}
+
+start(){
+  this.locationTracker.startTracking();
+}
+
+stop(){
+  this.locationTracker.stopTracking();
 }
 
 }

@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
   and Angular DI.
 */
 let apiUrl = 'https://www.barnestorm.biz:90/Dapi/api/';
-let apiUrl2 = 'https://localhost:44302/Dapi/api/';
+
 
 @Injectable()
 export class AuthServiceProvider {
@@ -35,6 +35,38 @@ export class AuthServiceProvider {
 
   }
 
+  addData(type, item) {
+    this.token = JSON.parse(localStorage.getItem('accTok'));  
+    let headers = new HttpHeaders();
+headers = headers.set('Authorization', 'Bearer ' + this.token);
+    const httpOptions = {
+      headers: headers
+    };
+    return new Promise(resolve => {
+      this.http.post(apiUrl+type, item, httpOptions).subscribe(data => {
+  resolve(data);
+}, err => {
+  console.log(err);
+});
+});
+  }
+
+  updateData(type, item) {
+    this.token = JSON.parse(localStorage.getItem('accTok'));  
+    let headers = new HttpHeaders();
+headers = headers.set('Authorization', 'Bearer ' + this.token);
+    const httpOptions = {
+      headers: headers
+    };
+    return new Promise(resolve => {
+      this.http.put(apiUrl+type, item, httpOptions).subscribe(data => {
+  resolve(data);
+}, err => {
+  console.log(err);
+});
+});
+  }
+
   getData(type) {
     this.token = JSON.parse(localStorage.getItem('accTok'));    
   
@@ -52,7 +84,16 @@ headers = headers.set('Authorization', 'Bearer ' + this.token);
     });
   }
   
-       
+  addUser(data) {
+    return new Promise((resolve, reject) => {
+      this.http.post(apiUrl+'/ToDoList', JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
 
   
   

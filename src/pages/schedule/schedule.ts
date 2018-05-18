@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { UserServiceProvider } from '../../providers/user-service/user-service'
+import { NavController, LoadingController, ModalController } from 'ionic-angular';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { ScheduleDetailsPage } from '../scheduledetails/scheduledetails'
+import { CreateSchedulePage } from '../create-schedule/create-schedule'
 
 @Component({
   selector: 'page-schedule',
@@ -8,17 +10,43 @@ import { UserServiceProvider } from '../../providers/user-service/user-service'
 })
 export class SchedulePage {
 
-users: any;
+  schedules: any;
+  loading: any;
 
-  constructor(public navCtrl: NavController, public userProvider: UserServiceProvider) {
-this.getUsers();
+  constructor(public navCtrl: NavController, public authServiceProvider: AuthServiceProvider, private loadingCtrl: LoadingController, public modalCtrl : ModalController) {
+  
+this.getSchedule();
+
   }
 
-  getUsers() {
-    this.userProvider.getUsers()
+  public openModal(){
+    var modalPage = this.modalCtrl.create(CreateSchedulePage); 
+    modalPage.present();
+  }   
+
+  doRefresh(refresher) {
+    this.getSchedule();
+    refresher.complete();
+    
+  }
+  getSchedule() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Loading schedule...'
+  });
+    this.loading.present();
+    this.authServiceProvider.getData('SchedHourly/MINE')
     .then(data => {
-      this.users = data;
-      console.log(this.users);
+      this.schedules = data;
+     
+    });
+    this.loading.dismiss();
+  }
+
+ 
+  viewItem(msg) {
+    console.log(msg);
+    this.navCtrl.push(ScheduleDetailsPage, {
+      msg: msg
     });
   }
 

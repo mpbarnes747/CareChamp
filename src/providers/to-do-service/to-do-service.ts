@@ -39,7 +39,7 @@ headers = headers.set('Authorization', 'Bearer ' + this.token);
 
   addUser(data) {
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/users', JSON.stringify(data))
+      this.http.post(this.apiUrl+'/ToDoList', JSON.stringify(data))
         .subscribe(res => {
           resolve(res);
         }, (err) => {
