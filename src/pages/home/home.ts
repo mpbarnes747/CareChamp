@@ -6,6 +6,7 @@ import { LocationTrackerProvider } from '../../providers/location-tracker/locati
 import { Network } from '@ionic-native/network';
 import { UserSettingsPage } from '../../pages/user-settings/user-settings';
 
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -24,6 +25,8 @@ isConnected: boolean = true;
     
  this.getUser();
  this.locationTracker.startTracking();
+
+ 
 
  let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
   console.log('network was disconnected :-(');
@@ -58,6 +61,7 @@ logout(){
     this.app.getRootNav().setRoot(LoginPage);
    
 }
+
 
 getUser() {
   this.authService.getData('AppUser/ME')

@@ -33,6 +33,7 @@ import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 import { Geolocation } from '@ionic-native/geolocation';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { Network } from '@ionic-native/network';
+import { OneSignal } from '@ionic-native/onesignal';
 
 
 @NgModule({
@@ -95,7 +96,8 @@ import { Network } from '@ionic-native/network';
     LocationTrackerProvider,
     BackgroundGeolocation,
     Geolocation,
-    Network
+    Network,
+    OneSignal
   ]
 })
 export class AppModule {}
