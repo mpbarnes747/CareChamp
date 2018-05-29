@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, LoadingController } from 'ionic-angular';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the VitalSignsPage page.
@@ -14,13 +15,14 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
 })
 export class VitalSignsPage {
 
-  sysBp: number = 80;
-  diaBp: number = 120;
-  temp: number = 98.6;
-  resp: number = 40;
-  pulse: number = 60;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+asmt: any;
+loading: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, private loadingCtrl: LoadingController, public authServiceProvider: AuthServiceProvider) {
+
+    this.asmt = this.navParams.get('asmt');  
+
   }
 
   ionViewDidLoad() {
@@ -32,7 +34,22 @@ export class VitalSignsPage {
     this.viewCtrl.dismiss();
   }
 
+  
   saveVitals() {
-    this.viewCtrl.dismiss();
+    
+    this.loading = this.loadingCtrl.create({
+      content: 'Saving vital signs...'
+  });
+    this.loading.present();
+    console.log(this.asmt);
+    this.authServiceProvider.updateData('VitalSign/MINE', this.asmt)
+    .then(data => {
+      console.log(data);
+      
+           this.loading.dismiss();
+      /*Save assessment */
+    this.viewCtrl.dismiss(this.asmt);
+      
+    });
   }
 }

@@ -21,5 +21,59 @@
 
 
 <ion-content padding>
+    <p>Today is {{ today | date :  "EEE MMM d" }}</p>
+   
+
+    <ion-item>
+        <ion-label floating>Patient</ion-label>
+        <ion-select [(ngModel)]="schedule.ChartNum" interface="popover">
+          <ion-option *ngFor="let pat of pats" value="{{pat.ChartNum}}" (ionSelect)="getPayers()">{{pat.PatName}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>Date</ion-label>
+          <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="schedule.StartDt"></ion-datetime>
+        </ion-item>
+      <ion-item>
+          <ion-label floating>Start</ion-label>
+          <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="schedule.StartTm"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>End</ion-label>
+            <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="schedule.EndTm"></ion-datetime>
+          </ion-item>
+      
+          <ion-item>
+              <ion-label floating>Visit Type</ion-label>
+              <ion-select [(ngModel)]="schedule.AssessType" interface="popover" >
+                <ion-option *ngFor="let atyp of assessTypes" value="{{atyp.AssessType}}" (ionSelect)="getVstType()" >{{atyp.Description}}</ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+          <ion-label floating>Payer</ion-label>
+          <ion-select [(ngModel)]="schedule.ProPay" interface="popover" >
+            <ion-option *ngFor="let pay of payers" value="{{pay.ProPay}}" (ionSelect)="getCodes()" >{{pay.Description}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Job Code</ion-label>
+            <ion-select [(ngModel)]="schedule.JobCode" interface="popover" >
+              <ion-option *ngFor="let job of jobCodes" value="{{job.Code}}" >{{job.Description}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+              <ion-label floating>Visit Code</ion-label>
+              <ion-select [(ngModel)]="schedule.VstCode" interface="popover" >
+                <ion-option *ngFor="let vst of vstCodes" value="{{vst.Code}}" >{{vst.Description}}</ion-option>
+              </ion-select>
+            </ion-item>
+            
 
 </ion-content>
+
+<ion-footer>
+    <button ion-button large round block color="primary" (click)="saveSchedule()">
+      Schedule Visit
+    </button>
+  
+  </ion-footer>

@@ -13,6 +13,7 @@ declare var google;
 export class ScheduleDetailsPage {
   
   
+today = new Date();
 
   schedule: any;
   assessment: any;
@@ -119,18 +120,19 @@ startNavigating(uLoc){
       content: 'Starting visit...'
   });
     this.loading.present();
-
+console.log(this.schedule);
     this.authServiceProvider.addData('Assessment/', this.schedule)
     .then(data => {
       console.log(data);
+      localStorage.setItem('curAction', 'Start Visit');
       this.assessment = data;
       this.loading.dismiss().then(() => {
                         
         var modalPage = this.modalCtrl.create(StartVisitPage, {sched: this.assessment}); 
         modalPage.present();
         modalPage.onDidDismiss(modalData => {
-          this.schedule.AssessStartDate =  modalData.StartDt.toLocaleDateString();
-this.schedule.AssessStartTime = modalData.StartTm.toLocaleTimeString();;
+         
+
         });
    });
       

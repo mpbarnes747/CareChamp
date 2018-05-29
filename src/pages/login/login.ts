@@ -40,6 +40,7 @@ export class LoginPage {
       if(this.token){
                   
                   localStorage.setItem('accTok', JSON.stringify(this.token));
+                  localStorage.setItem('curAction', 'Login');
                   this.getUser();
                   
                   this.loading.dismiss().then(() => {

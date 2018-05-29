@@ -1,11 +1,11 @@
 <!--
-  Generated template for the SafetyPage page.
+  Generated template for the UserSettingsPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
 <ion-header>
-    <ion-navbar  color="primary">
+    <ion-navbar  color="dark">
   
        <ion-buttons start>
             <button ion-button icon-only (click)="closeModal()">
@@ -13,7 +13,7 @@
             </button>
           </ion-buttons>
       <ion-title>
-         Safety
+         My Profile
       </ion-title>
       
     </ion-navbar>
@@ -22,17 +22,4 @@
 
 <ion-content padding>
 
-    <ion-item>
-        <ion-label floating>Comments</ion-label>
-        <ion-textarea [(ngModel)]="asmt.txtLabs" ></ion-textarea>
-        
-      </ion-item>
-
 </ion-content>
-
-<ion-footer>
-    <button ion-button large round block color="primary" (click)="saveSafety()">
-      Save Safety
-    </button>
-  
-  </ion-footer>

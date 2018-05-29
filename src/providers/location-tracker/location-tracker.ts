@@ -19,7 +19,7 @@ export class LocationTrackerProvider {
   public lng: number = 0;
 public spd: number = 0;
 public lastUpdateTime;
-
+public lastAction: string = "";
 tracking: any;
 
   constructor(public zone: NgZone, public authServiceProvider: AuthServiceProvider, private backgroundGeolocation: BackgroundGeolocation, private geolocation: Geolocation) {
@@ -91,11 +91,17 @@ this.logTracking();
   }
  
   logTracking() {
+    var thisAction = localStorage.getItem('curAction');
     var now = new Date();
-    if(this.lastUpdateTime && now.getTime() - this.lastUpdateTime.getTime() < (60000*5)){
+    if (thisAction==this.lastAction) {
+      if(this.lastUpdateTime && now.getTime() - this.lastUpdateTime.getTime() < (60000*5)){
         console.log("Ignoring position update");
         return;
     }
+    }
+    
+    this.lastAction = thisAction;
+    
     this.lastUpdateTime = now;
     if (this.tracking) {
 
@@ -108,6 +114,8 @@ this.logTracking();
     this.tracking.Latitude = this.lat;
     this.tracking.Longitude = this.lng;
     this.tracking.Speed = this.spd;
+    this.tracking.TrackingType = this.lastAction;
+    
     console.log(this.tracking);
     this.authServiceProvider.addData('AppUserTracking/', this.tracking)
         .then(data => {

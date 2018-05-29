@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { SignaturePadModule } from 'angular2-signaturepad';
 
 import { LoginPage } from '../pages/login/login';
 import { SchedulePage } from '../pages/schedule/schedule';
@@ -13,6 +14,9 @@ import { MessageDetailsPage } from '../pages/messagedetails/messagedetails';
 import { StartVisitPage } from '../pages/start-visit/start-visit';
 import { VitalSignsPage } from '../pages/vital-signs/vital-signs';
 import { FunctionalPage } from '../pages/functional/functional';
+import { PatSignaturePage } from '../pages/pat-signature/pat-signature';
+import { MySignaturePage } from '../pages/my-signature/my-signature';
+import { UserSettingsPage } from '../pages/user-settings/user-settings';
 import { SafetyPage } from '../pages/safety/safety';
 import { LocatorPage } from '../pages/locator/locator';
 import { HomePage } from '../pages/home/home';
@@ -27,6 +31,9 @@ import { InterceptorsAuthProvider } from '../providers/interceptors-auth/interce
 import { LocationTrackerProvider } from '../providers/location-tracker/location-tracker';
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 import { Geolocation } from '@ionic-native/geolocation';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { Network } from '@ionic-native/network';
+
 
 @NgModule({
   declarations: [
@@ -41,12 +48,16 @@ import { Geolocation } from '@ionic-native/geolocation';
     VitalSignsPage,
     FunctionalPage,
     SafetyPage,
+    PatSignaturePage,
+    MySignaturePage,
+    UserSettingsPage,
     LocatorPage,
     HomePage,
     TabsPage   
   ],
   imports: [
     BrowserModule,
+    SignaturePadModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp, {
         backButtonText: ''
@@ -65,6 +76,9 @@ import { Geolocation } from '@ionic-native/geolocation';
     VitalSignsPage,
     FunctionalPage,
     SafetyPage,
+    PatSignaturePage,
+    MySignaturePage,
+    UserSettingsPage,
     LocatorPage,
     HomePage,
     TabsPage
@@ -76,10 +90,12 @@ import { Geolocation } from '@ionic-native/geolocation';
     ToDoServiceProvider,
     AuthServiceProvider,
     UserServiceProvider,
+    ScreenOrientation,
     {provide: HTTP_INTERCEPTORS, useClass:  InterceptorsAuthProvider, multi: true},
     LocationTrackerProvider,
     BackgroundGeolocation,
-    Geolocation
+    Geolocation,
+    Network
   ]
 })
 export class AppModule {}

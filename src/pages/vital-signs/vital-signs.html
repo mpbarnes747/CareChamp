@@ -23,52 +23,56 @@
 <ion-content padding>
 
     <ion-item>
-        <ion-badge item-end color="secondary">{{temp}}</ion-badge>
+        <ion-badge item-end color="secondary">{{asmt.txtTemp/10}}</ion-badge>
         <ion-label floating>Temperature</ion-label>
-      <ion-range min="90" max="110" pin="true" [(ngModel)]="temp" color="secondary">
+      <ion-range min="960" max="1060" pin="true" [(ngModel)]="asmt.txtTemp" color="secondary">
         
        
       </ion-range>
     </ion-item>
 
     <ion-item>
-        <ion-badge item-end color="secondary">{{pulse}}</ion-badge>
+        <ion-badge item-end color="secondary">{{asmt.txtAPulse}}</ion-badge>
         <ion-label floating>Pulse</ion-label>
-      <ion-range min="20" max="200" pin="true" [(ngModel)]="pulse" color="secondary">
+      <ion-range min="20" max="200" pin="true" [(ngModel)]="asmt.txtAPulse" color="secondary">
         
        
       </ion-range>
     </ion-item>
 
     <ion-item>
-        <ion-badge item-end color="secondary">{{resp}}</ion-badge>
+        <ion-badge item-end color="secondary">{{asmt.txtResp}}</ion-badge>
         <ion-label floating>Respirations</ion-label>
-      <ion-range min="10" max="110" pin="true" [(ngModel)]="resp" color="secondary">
+      <ion-range min="10" max="110" pin="true" [(ngModel)]="asmt.txtResp" color="secondary">
         
       </ion-range>
     </ion-item>
  
   <ion-item>
-      <ion-badge item-end color="secondary">{{sysBp}} / {{diaBp}}</ion-badge>
+      <ion-badge item-end color="secondary">{{asmt.txtBPLL}}<br />/<br />{{asmt.txtBPLL2}}</ion-badge>
       <ion-label floating>Blood Pressure</ion-label>
-    <ion-range min="60" max="300" pin="true" [(ngModel)]="sysBp" color="secondary">
-      <ion-label range-left>Systolic</ion-label>
+    <ion-range min="40" max="350" pin="true" [(ngModel)]="asmt.txtBPLL" color="secondary">
+      
       
     </ion-range>
-    <ion-range min="60" max="300" pin="true" [(ngModel)]="diaBp" color="secondary">
-        <ion-label range-left>Diastolic</ion-label>
+    <ion-range min="40" max="350" pin="true" [(ngModel)]="asmt.txtBPLL2" color="secondary">
+        
               </ion-range>
   </ion-item>
   
   
-    
+  <ion-item>
+      <ion-label floating>Comments</ion-label>
+      <ion-textarea [(ngModel)]="asmt.txtCom" ></ion-textarea>
+      
+    </ion-item>
     
  
 
 </ion-content>
 
 <ion-footer>
-  <button ion-button large round block color="primary" (click)="saveVitals()">
+  <button ion-button large full color="primary" (click)="saveVitals()">
     Save Vital Signs
   </button>
 

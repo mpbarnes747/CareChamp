@@ -12,18 +12,38 @@ export class SchedulePage {
 
   schedules: any;
   loading: any;
+sched: any;
+today = new Date();
+myDate: String = new Date().toISOString();
+myDate2: String = new Date(this.today.getTime() + 60*60000).toISOString();
 
   constructor(public navCtrl: NavController, public authServiceProvider: AuthServiceProvider, private loadingCtrl: LoadingController, public modalCtrl : ModalController) {
-  
+    localStorage.setItem('curAction', 'Schedule');
 this.getSchedule();
 
   }
 
   public openModal(){
-    var modalPage = this.modalCtrl.create(CreateSchedulePage); 
+    console.log(this.schedules[0]);
+    this.sched = this.schedules[0].SchedEvents[0];
+this.sched.ChartNum = "";
+this.sched.StartDt = this.myDate;
+this.sched.StartTm = this.myDate;
+this.sched.EndTm = this.myDate2;
+this.sched.ProPay = "";
+this.sched.JobCode = "";
+this.sched.VstCode = "";
+this.sched.AssessType = "";
+
+    var modalPage = this.modalCtrl.create(CreateSchedulePage, {sched: this.sched}); 
     modalPage.present();
+    modalPage.onDidDismiss(modalData => {
+      this.getSchedule();
+
+    });
   }   
 
+  
   doRefresh(refresher) {
     this.getSchedule();
     refresher.complete();

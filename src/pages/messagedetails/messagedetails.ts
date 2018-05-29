@@ -17,7 +17,7 @@ editorMsg: any;
 
   constructor( public navCtrl: NavController, public navParams:NavParams, public authServiceProvider: AuthServiceProvider, private loadingCtrl: LoadingController) 
   {
-   
+    localStorage.setItem('curAction', 'Messages');
     this.message = this.navParams.get('msg');  
     
     if (this.message) {

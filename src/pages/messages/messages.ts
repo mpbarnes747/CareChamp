@@ -15,6 +15,7 @@ export class MessagesPage {
   constructor(public navCtrl: NavController, public authServiceProvider: AuthServiceProvider, private loadingCtrl: LoadingController) {
     
     this.getMessages();
+    localStorage.setItem('curAction', 'Messages');
   }
 
   getMessages() {

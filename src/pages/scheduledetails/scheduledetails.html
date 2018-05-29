@@ -8,13 +8,13 @@
     
   </ion-navbar>
   <ion-toolbar>
-      <button *ngIf="schedule.Status=='1'" ion-button large block round color="primary" (click)="startVisit()"  >  Start Visit</button>
-      <button *ngIf="schedule.Status!='1'" ion-button large block round color="primary" (click)="startVisit()"  > Edit Visit</button>
+      <button *ngIf="schedule.Status=='1'" ion-button large full color="primary" (click)="startVisit()"  >  Start Visit</button>
+      <button *ngIf="schedule.Status!='1'" ion-button large full color="primary" (click)="startVisit()"  > Edit Visit</button>
     </ion-toolbar>
 </ion-header>
 
 <ion-content padding >
-  
+        <p>Today is {{ today | date :  "EEE MMM d" }}</p>
     <h3>{{ schedule.PatName }}</h3>
 <h4>Scheduled for {{ schedule.StartDate }}</h4>
 <h5>{{ schedule.StartTime }}</h5>
